@@ -1,7 +1,9 @@
 [package]
 name = "embedded-llm"
-version = "0.1.0"
+version = "0.0.0"
 edition = "2024"
+license = "CC0-1.0"
+description = "LLM traits which work universally"
 
 [dependencies]
 embedded-io = "0.6.1"
