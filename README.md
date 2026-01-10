@@ -1,13 +1,14 @@
 # embedded-llm
 
 ## Description
-Project embedded-llm
+Universal traits for interacting with Large Language Models in embedded environments.
 
 ## Goals
-- [ ] Add project goals
+- [ ] Define standard LLM traits
+- [ ] Ensure `no_std` compatibility
 
 ## Progress
-- [ ] Initial setup
+- [ ] Crate initialized
 
 ---
 *AI assisted*
