@@ -9,3 +9,4 @@ description.workspace = true
 embedded-io.workspace = true
 embedded-io-async.workspace = true
 futures-core.workspace = true
+either.workspace = true
