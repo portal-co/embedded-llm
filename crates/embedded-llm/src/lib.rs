@@ -1,4 +1,5 @@
 #![no_std]
+#![allow(async_fn_in_trait)]
 
 use embedded_io::ErrorType;
 use futures_core::Stream;
@@ -22,9 +23,9 @@ pub trait LLMRef: ErrorType {
     fn start(&self, system: &str) -> Result<impl LLMInstance<Error = Self::Error>, Self::Error>;
 }
 pub trait LLMInstance: ErrorType {
-    fn send(
+    fn send<'a>(
         &mut self,
-        messages: impl Iterator<Item = (MessageType, &str)>,
+        messages: impl Iterator<Item = (MessageType, &'a str)>,
     ) -> Result<(MessageType, impl embedded_io::Read<Error = Self::Error>), Self::Error>;
 }
 pub trait AsyncLLMMut: ErrorType {
@@ -40,8 +41,8 @@ pub trait AsyncLLMRef: ErrorType {
     ) -> Result<impl AsyncLLMInstance<Error = Self::Error>, Self::Error>;
 }
 pub trait AsyncLLMInstance: ErrorType {
-    async fn send(
+    async fn send<'a>(
         &mut self,
-        messages: impl Stream<Item = (MessageType, &str)>,
+        messages: impl Stream<Item = (MessageType, &'a str)>,
     ) -> Result<(MessageType, impl embedded_io_async::Read<Error = Self::Error>), Self::Error>;
 }

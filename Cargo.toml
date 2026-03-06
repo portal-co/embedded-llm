@@ -1,11 +1,19 @@
-[package]
-name = "embedded-llm"
+[workspace]
+members = [
+    "crates/embedded-llm",
+    "crates/embedded-llm-tools",
+]
+
+[workspace.package]
 version = "0.1.0"
 edition = "2024"
 license = "CC0-1.0"
 description = "LLM traits which work universally"
+publish = false
 
-[dependencies]
+[workspace.dependencies]
 embedded-io = "0.7"
 embedded-io-async = "0.7"
 futures-core = { version = "0.3.31", default-features = false }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0.138"
