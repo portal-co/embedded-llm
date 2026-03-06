@@ -1,7 +1,5 @@
 #![no_std]
 
-use core::ops::Deref;
-
 use embedded_io::ErrorType;
 use futures_core::Stream;
 
@@ -26,8 +24,8 @@ pub trait LLMRef: ErrorType {
 pub trait LLMInstance: ErrorType {
     fn send(
         &mut self,
-        messages: impl Iterator<Item = (MessageType, impl Deref<Target = str>)>,
-    ) -> Result<impl embedded_io::Read<Error = Self::Error>, Self::Error>;
+        messages: impl Iterator<Item = (MessageType, &str)>,
+    ) -> Result<(MessageType, impl embedded_io::Read<Error = Self::Error>), Self::Error>;
 }
 pub trait AsyncLLMMut: ErrorType {
     async fn start(
@@ -44,6 +42,6 @@ pub trait AsyncLLMRef: ErrorType {
 pub trait AsyncLLMInstance: ErrorType {
     async fn send(
         &mut self,
-        messages: impl Stream<Item = (MessageType, impl Deref<Target = str>)>,
-    ) -> Result<impl embedded_io_async::Read<Error = Self::Error>, Self::Error>;
+        messages: impl Stream<Item = (MessageType, &str)>,
+    ) -> Result<(MessageType, impl embedded_io_async::Read<Error = Self::Error>), Self::Error>;
 }
