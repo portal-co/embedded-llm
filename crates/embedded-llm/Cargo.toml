@@ -5,6 +5,9 @@ edition.workspace = true
 license.workspace = true
 description.workspace = true
 
+[features]
+alloc = []
+
 [dependencies]
 embedded-io.workspace = true
 embedded-io-async.workspace = true
